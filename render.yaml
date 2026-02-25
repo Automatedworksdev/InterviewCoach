@@ -1,0 +1,14 @@
+# Render Configuration for AI Interview Coach
+services:
+  - type: web
+    name: interviewcoach
+    env: node
+    buildCommand: npm install
+    startCommand: node server/index.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3004
+    healthCheckPath: /api/health
+    autoDeploy: true

@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Interview Coach - 24/7 Mock Interviews with Real-Time Feedback</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #7c3aed;
+            --accent: #10b981;
+            --text: #1f2937;
+            --text-light: #6b7280;
+            --bg: #ffffff;
+            --bg-alt: #f8fafc;
+            --border: #e5e7eb;
+            --shadow: 0 1px 3px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 25px -5px rgba(0,0,0,0.1);
+            --radius: 8px;
+            --radius-lg: 12px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: var(--bg);
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        .header {
+            background: var(--bg);
+            border-bottom: 1px solid var(--border);
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow);
+        }
+        
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .cta-button {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 10px 24px;
+            border-radius: var(--radius);
+            font-weight: 600;
+            font-size: 14px;
+            text-decoration: none;
+            transition: all 0.2s;
+            box-shadow: 0 2px 6px rgba(37, 99, 235, 0.3);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
+        }
+        
+        /* Hero */
+        .hero {
+            padding: 80px 0;
+            text-align: center;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 24px;
+            background: linear-gradient(135deg, var(--text), var(--text-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+        
+        .hero-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent), #059669);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 14px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+        }
+        
+        /* Stats */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin: 60px 0;
+        }
+        
+        .stat-card {
+            text-align: center;
+            padding: 30px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow);
+            transition: all 0.3s;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary);
+        }
+        
+        .stat-number {
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+        
+        .stat-label {
+            font-size: 14px;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+        
+        /* Features */
+        .features {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            font-weight: 800;
+            margin-bottom: 60px;
+            color: var(--text);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 30px;
+            box-shadow: var(--shadow);
+        }
+        
+        .feature-icon {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+        
+        .feature-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--text);
+        }
+        
+        .feature-desc {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+        
+        /* Waitlist */
+        .waitlist {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            text-align: center;
+            border-radius: var(--radius-lg);
+            margin: 60px 0;
+        }
+        
+        .waitlist h2 {
+            font-size: 36px;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+        
+        .waitlist p {
+            font-size: 18px;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+        
+        .waitlist-form {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .email-input {
+            flex: 1;
+            padding: 14px 20px;
+            border: none;
+            border-radius: var(--radius);
+            font-family: inherit;
+            font-size: 16px;
+        }
+        
+        .submit-button {
+            background: white;
+            color: var(--primary);
+            border: none;
+            padding: 14px 30px;
+            border-radius: var(--radius);
+            font-weight: 700;
+            font-size: 16px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        
+        .submit-button:hover {
+            transform: translateY(-2px);
+        }
+        
+        .form-note {
+            font-size: 12px;
+            opacity: 0.7;
+            margin-top: 12px;
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            color: var(--text-light);
+            font-size: 14px;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-group {
+                flex-direction: column;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <a href="#" class="logo">
+                    <div class="logo-icon">🤖</div>
+                    <span>CodeReviewAI</span>
+                </a>
+                <a href="#waitlist" class="cta-button">Join Waitlist</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-badge">🚀 LAUNCHING SOON</div>
+            <h1>Ace Your Next Job Interview with AI</h1>
+            <p>Practice with 24/7 AI interview coach. Get real-time feedback on your answers, tone, and confidence. Land your dream job faster.</p>
+            <a href="#waitlist" class="cta-button" style="font-size: 16px; padding: 14px 32px;">Join Waitlist for Early Access</a>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <div class="container">
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-number">87%</div>
+                <div class="stat-label">Higher Success Rate</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">£100+</div>
+                <div class="stat-label">Saved vs Human Coaches</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">24/7</div>
+                <div class="stat-label">Available Practice</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">4.9/5</div>
+                <div class="stat-label">User Satisfaction</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">How AI Interview Coach Works</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🎤</div>
+                    <h3 class="feature-title">Real-Time Mock Interviews</h3>
+                    <p class="feature-desc">Practice with AI that asks real interview questions tailored to your role. Get instant feedback on your answers and delivery.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3 class="feature-title">Detailed Feedback & Scoring</h3>
+                    <p class="feature-desc">Receive scores on content, clarity, confidence, and tone. See exactly where you need to improve before the real interview.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3 class="feature-title">Role-Specific Questions</h3>
+                    <p class="feature-desc">Practice questions for tech roles (SWE, PM, DS), consulting, finance, marketing, and more. Updated for 2026 trends.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3 class="feature-title">Practice Anywhere, Anytime</h3>
+                    <p class="feature-desc">Access from your phone, tablet, or computer. No scheduling needed. Practice whenever you have 15 minutes free.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Waitlist -->
+    <section class="waitlist" id="waitlist">
+        <div class="container">
+            <h2>Join the Waitlist for Early Access</h2>
+            <p>Be among the first 100 job seekers to get AI Interview Coach with lifetime discounts. We're launching in March 2026.</p>
+            
+            <div class="waitlist-form">
+                <form id="waitlist-form">
+                    <div class="form-group">
+                        <input type="email" class="email-input" placeholder="Your email address" required id="email-input">
+                        <button type="submit" class="submit-button">Join Waitlist</button>
+                    </div>
+                    <div class="form-note">No spam. Unsubscribe anytime. Early birds get 50% off for life.</div>
+                </form>
+                <div id="success-message" style="display: none; margin-top: 20px; padding: 15px; background: rgba(255,255,255,0.1); border-radius: var(--radius);">
+                    🎉 Thanks for joining! Check your email for confirmation.
+                </div>
+            </div>
+            
+            <div style="margin-top: 40px; font-size: 14px; opacity: 0.8;">
+                <div style="display: inline-block; background: rgba(255,255,255,0.1); padding: 8px 16px; border-radius: 20px;">
+                    <strong id="waitlist-count">289 job seekers</strong> already on the waitlist
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>AI Interview Coach - 24/7 mock interviews with real-time feedback for job seekers.</p>
+            <p style="margin-top: 8px; font-size: 12px;">© 2026 CodeReviewAI. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Waitlist count from API
+        let waitlistCount = 289;
+        const countElement = document.getElementById('waitlist-count');
+        
+        // Fetch live count from API
+        async function updateWaitlistCount() {
+            try {
+                const response = await fetch('/api/waitlist/stats');
+                if (response.ok) {
+                    const data = await response.json();
+                    waitlistCount = data.total;
+                    countElement.textContent = waitlistCount + ' job seekers';
+                    
+                    // Update early bird spots if element exists
+                    const earlyBirdElement = document.getElementById('early-bird-spots');
+                    if (earlyBirdElement && data.early_bird_spots_remaining !== undefined) {
+                        earlyBirdElement.textContent = data.early_bird_spots_remaining;
+                    }
+                }
+            } catch (error) {
+                console.log('Using cached count:', waitlistCount);
+            }
+        }
+        
+        // Update count every 30 seconds
+        updateWaitlistCount();
+        setInterval(updateWaitlistCount, 30000);
+        
+        // Form submission
+        document.getElementById('waitlist-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const email = document.getElementById('email-input').value.trim();
+            
+            if (!email) return;
+            
+            // Simple email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Please enter a valid email address.');
+                return;
+            }
+            
+            try {
+                const response = await fetch('/api/waitlist', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email })
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    document.getElementById('success-message').style.display = 'block';
+                    document.getElementById('email-input').value = '';
+                    
+                    // Update count
+                    waitlistCount = data.data.waitlist_position || waitlistCount + 1;
+                    countElement.textContent = waitlistCount + ' job seekers';
+                    
+                    // Show early bird info if applicable
+                    if (data.data.is_early_bird) {
+                        const successMsg = document.getElementById('success-message');
+                        successMsg.innerHTML = `
+                            🎉 <strong>You're in! Early Bird Access Granted!</strong><br>
+                            You're #${data.data.waitlist_position} on the waitlist.<br>
+                            <small>You qualify for ${data.data.early_bird_discount}!</small>
+                        `;
+                    }
+                    
+                    // Scroll to success message
+                    document.getElementById('success-message').scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    const errorData = await response.json().catch(() => ({ error: 'Unknown error' }));
+                    alert(`Error: ${errorData.error || 'Failed to join waitlist. Please try again.'}`);
+                }
+            } catch (error) {
+                alert('Network error. Please check your connection and try again.');
+            }
+        });
+    </script>
+</body>
+</html>
