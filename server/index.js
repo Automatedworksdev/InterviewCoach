@@ -191,20 +191,19 @@ app.get('/api/waitlist/stats', (req, res) => {
       return res.status(500).json({ error: 'Failed to get stats' });
     }
     
-    // Add some realistic growth for demo
+    // Use real data - no more placeholder 289
     const baseTotal = row.total || 0;
-    const mockTotal = Math.max(baseTotal, 289); // Start with 289
     
     const stats = {
-      total: mockTotal,
-      job_roles: row.job_roles || 8,
-      experience_levels: row.experience_levels || 3,
-      entry_level: row.entry_level || Math.floor(mockTotal * 0.4),
-      mid_level: row.mid_level || Math.floor(mockTotal * 0.35),
-      senior_level: row.senior_level || Math.floor(mockTotal * 0.25),
+      total: baseTotal,
+      job_roles: row.job_roles || 0,
+      experience_levels: row.experience_levels || 0,
+      entry_level: row.entry_level || 0,
+      mid_level: row.mid_level || 0,
+      senior_level: row.senior_level || 0,
       updated_at: new Date().toISOString(),
-      early_bird_spots_remaining: Math.max(0, 100 - Math.floor(mockTotal * 0.5)),
-      mock_interviews_completed: Math.floor(mockTotal * 1.2) // People try multiple mocks
+      early_bird_spots_remaining: Math.max(0, 100 - baseTotal),
+      mock_interviews_completed: Math.floor(baseTotal * 1.2) // People try multiple mocks
     };
     
     res.json(stats);
